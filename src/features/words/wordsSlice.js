@@ -12,17 +12,7 @@ export const fetchWords = createAsyncThunk('words/fetchWords', async (word) => {
 const wordsSlice = createSlice({
 	name: 'words',
 	initialState: { isLoading: true, errMess: null, wordsArray: [] },
-	reducers: {
-		logword: (state, action) => {
-			state.wordsArray.push(action.payload)
-		},
-		removeword: (state, action) => {
-			const wordToRemove = {
-				...action.payload,
-			}
-			return state.wordsArray.filter((climb) => climb._id !== wordToRemove._id)
-		},
-	},
+	reducers: {},
 	extraReducers: (builder) => {
 		builder
 			.addCase(fetchWords.pending, (state) => {
