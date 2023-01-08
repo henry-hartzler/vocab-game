@@ -1,14 +1,10 @@
-import {
-	configureStore,
-	getDefaultMiddleware,
-	combineReducers,
-} from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import { wordsReducer } from '../features/words/wordsSlice'
 import { logger } from 'redux-logger'
 
 export const store = configureStore({
-	reducer: combineReducers({
+	reducer: {
 		words: wordsReducer,
-	}),
+	},
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 })

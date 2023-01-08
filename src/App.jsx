@@ -6,9 +6,7 @@ import { store } from './shared/store'
 function App() {
 	return (
 		<Provider store={store}>
-			<div className='App'>
-				<HomePage />
-			</div>
+			<HomePage />
 		</Provider>
 	)
 }

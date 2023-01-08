@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { baseUrl } from '../../shared/baseUrl'
 import axios from 'axios'
 
 export const fetchWords = createAsyncThunk('words/fetchWords', async (word) => {
@@ -30,5 +29,4 @@ const wordsSlice = createSlice({
 	},
 })
 
-export const { logWord, removeWord } = wordsSlice.actions
 export const wordsReducer = wordsSlice.reducer
