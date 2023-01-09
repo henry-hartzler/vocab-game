@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const fetchWords = createAsyncThunk('words/fetchWords', async (word) => {
 	const response = await axios.get(
-		`https://api.datamuse.com/words?ml=${word}&rel_trg=${word}`
+		`https://api.datamuse.com/words?ml=${word}&rel_trg=${word}&topics=${word}`
 	)
 	return response.data
 })
