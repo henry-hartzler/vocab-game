@@ -15,7 +15,7 @@ export default function HomePage() {
 	const [text, setText] = useState('')
 
 	return (
-		<>
+		<React.Fragment>
 			<CssBaseline />
 			<Container maxWidth='lg'>
 				<OutlinedInput
@@ -36,6 +36,6 @@ export default function HomePage() {
 			<Container>
 				<RandomWord />
 			</Container>
-		</>
+		</React.Fragment>
 	)
 }

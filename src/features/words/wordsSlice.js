@@ -11,7 +11,15 @@ export const fetchWords = createAsyncThunk('words/fetchWords', async (word) => {
 const wordsSlice = createSlice({
 	name: 'words',
 	initialState: { isLoading: true, errMess: null, wordsArray: [] },
-	reducers: {},
+	reducers: {
+		getNewWord: (state) => {
+			const randomIndex = Math.floor(
+				Math.random() * state.words.wordsArray.length
+			)
+
+			return state.words.wordsArray[randomIndex].word
+		},
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(fetchWords.pending, (state) => {
