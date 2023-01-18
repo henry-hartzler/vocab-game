@@ -16,6 +16,8 @@ const RandomWord = () => {
 	const [text, setText] = useState('')
 	const splitGuess = text.split('')
 
+	//need to separate the selectedWord so its not in this if statement - I think thats where it's erroring
+
 	if (wordsArray.length === 0) {
 		return <h1>Not enough search results. Please try again!</h1>
 	} else {
