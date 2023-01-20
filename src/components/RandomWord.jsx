@@ -21,7 +21,7 @@ const RandomWord = () => {
 	if (wordsArray.length === 0) {
 		return <h1>Not enough search results. Please try again!</h1>
 	} else {
-		const selectedWord = wordsArray[randomIndex].word.split('')
+		const selectedWord = wordsArray.word.split('')
 		return (
 			<>
 				<Container

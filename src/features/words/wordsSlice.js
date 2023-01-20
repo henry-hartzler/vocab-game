@@ -6,7 +6,7 @@ export const fetchWords = createAsyncThunk('words/fetchWords', async (word) => {
 		`https://api.datamuse.com/words?ml=${word}&rel_trg=${word}&topics=${word}`
 	)
 	const randomIndex = Math.floor(Math.random() * response.data.length)
-	return response.data[randomIndex].word
+	return response.data[randomIndex]
 })
 
 const wordsSlice = createSlice({
