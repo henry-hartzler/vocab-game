@@ -15,6 +15,7 @@ const RandomWord = () => {
 	const randomIndex = Math.floor(Math.random() * wordsArray.length)
 	const [text, setText] = useState('')
 	const splitGuess = text.split('')
+	const [submitGuess, setSubmitGuess] = useState(false)
 
 	//need to separate the selectedWord so its not in this if statement - I think thats where it's erroring
 
@@ -37,37 +38,50 @@ const RandomWord = () => {
 					<Button
 						variant='contained'
 						color='primary'
+						disabled={selectedWord.length === splitGuess.length ? false : true}
 						endIcon={<Icon>check</Icon>}
-						onClick={() => console.log('clicked')}
+						onClick={() => setSubmitGuess(!submitGuess)}
 					>
 						Check
 					</Button>
 				</Container>
-				{/* {splitGuess.length === selectedWord.length ? (
+				{submitGuess ? (
 					<Container>
-						<h1>YAY!</h1>
+						{selectedWord.join().toLowerCase() !==
+						splitGuess.join().toLowerCase() ? (
+							<Button
+								variant='contained'
+								color='primary'
+								endIcon={<Icon>question</Icon>}
+								onClick={() => setSubmitGuess(!submitGuess)}
+							>
+								Try again?
+							</Button>
+						) : (
+							<h1>YAY!</h1>
+						)}
 					</Container>
-				) : ( */}
-				<Container
-					style={{ display: 'flex', flexDirection: 'row', padding: 20 }}
-				>
-					{selectedWord.map((el) => (
-						<Card
-							key={selectedWord.indexOf(el)}
-							style={{ width: 50, height: 50, margin: 10 }}
-						>
-							<CardContent>
-								<Typography
-									variant='h5'
-									component='h2'
-								>
-									{el}
-								</Typography>
-							</CardContent>
-						</Card>
-					))}
-				</Container>
-				{/* )} */}
+				) : (
+					<Container
+						style={{ display: 'flex', flexDirection: 'row', padding: 20 }}
+					>
+						{selectedWord.map((el) => (
+							<Card
+								key={selectedWord.indexOf(el)}
+								style={{ width: 50, height: 50, margin: 10 }}
+							>
+								<CardContent>
+									<Typography
+										variant='h5'
+										component='h2'
+									>
+										{el}
+									</Typography>
+								</CardContent>
+							</Card>
+						))}
+					</Container>
+				)}
 			</>
 		)
 	}
