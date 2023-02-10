@@ -1,15 +1,58 @@
 import React from 'react'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import Container from '@material-ui/core/Container'
-import Button from '@material-ui/core/Button'
-import Icon from '@material-ui/core/Icon'
-import OutlinedInput from '@material-ui/core/OutlinedInput'
+import {
+	CssBaseline,
+	Grid,
+	Card,
+	CardContent,
+	Container,
+	Button,
+	Icon,
+	OutlinedInput,
+	Typography,
+} from '@material-ui/core'
 import { useState } from 'react'
 
 const NewHomePage = () => {
+	const rowArr = [0, 1, 2, 3, 4]
+	const guessNum = 0
+	const word = 'hello'
+	const guess = 'world'
+
+	const guess1 = () => {
+		return rowArr.map((e) => (
+			<Card
+				key={e}
+				style={{
+					width: 50,
+					height: 50,
+					margin: 10,
+					color: 'white',
+					backgroundColor:
+						word[e] === guess[e]
+							? 'green'
+							: word.includes(guess[e])
+							? 'yellow'
+							: 'black',
+				}}
+			>
+				<Typography
+					variant='h5'
+					component='h2'
+				>
+					{guess[e]}
+				</Typography>
+			</Card>
+		))
+	}
+
 	return (
 		<>
-			<h1>Hello World</h1>
+			<Grid
+				key={0}
+				container
+			>
+				{guess1()}
+			</Grid>
 		</>
 	)
 }
