@@ -1,5 +1,5 @@
 import './App.css'
-import NewHomePage from './pages/HomePage'
+import NewHomePage from './pages/NewHomePage'
 import { Provider } from 'react-redux'
 import { store } from './shared/store'
 
