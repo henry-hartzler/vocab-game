@@ -5,13 +5,22 @@ export const fetchWords = createAsyncThunk('words/fetchWords', async (word) => {
 	const response = await axios.get(
 		`https://api.datamuse.com/words?ml=${word}&rel_trg=${word}&topics=${word}`
 	)
-	return response.data
+	const randomIndex = Math.floor(Math.random() * response.data.length)
+	return response.data[randomIndex]
 })
 
 const wordsSlice = createSlice({
 	name: 'words',
 	initialState: { isLoading: true, errMess: null, wordsArray: [] },
-	reducers: {},
+	reducers: {
+		getNewWord: (state) => {
+			const randomIndex = Math.floor(
+				Math.random() * state.words.wordsArray.length
+			)
+
+			return state.words.wordsArray[randomIndex].word
+		},
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(fetchWords.pending, (state) => {
