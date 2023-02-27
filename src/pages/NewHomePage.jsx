@@ -16,9 +16,9 @@ const NewHomePage = () => {
 	const rowArr = [0, 1, 2, 3, 4]
 	const guessNum = 0
 	const word = 'hello'
-	const guess = 'world'
+	const [guessOne, setGuessOne] = useState('')
 
-	const guess1 = () => {
+	const response1 = () => {
 		return rowArr.map((e) => (
 			<Card
 				key={e}
@@ -28,9 +28,9 @@ const NewHomePage = () => {
 					margin: 10,
 					color: 'white',
 					backgroundColor:
-						word[e] === guess[e]
+						word[e] === `${guessOne[e]}`
 							? 'green'
-							: word.includes(guess[e])
+							: word.includes(guessOne[e])
 							? 'yellow'
 							: 'black',
 				}}
@@ -39,7 +39,7 @@ const NewHomePage = () => {
 					variant='h5'
 					component='h2'
 				>
-					{guess[e]}
+					{guessOne[e]}
 				</Typography>
 			</Card>
 		))
@@ -51,7 +51,7 @@ const NewHomePage = () => {
 				key={0}
 				container
 			>
-				{guess1()}
+				{response1()}
 			</Grid>
 		</>
 	)
