@@ -28,7 +28,9 @@ const NewHomePage = () => {
 					margin: 10,
 					color: 'white',
 					backgroundColor:
-						word[e] === `${guessOne[e]}`
+						guessOne[e] === undefined
+							? 'lightgrey'
+							: word[e] === `${guessOne[e]}`
 							? 'green'
 							: word.includes(guessOne[e])
 							? 'yellow'
