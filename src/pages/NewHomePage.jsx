@@ -14,11 +14,26 @@ import { useState } from 'react'
 
 const NewHomePage = () => {
 	const rowArr = [0, 1, 2, 3, 4]
-	const guessNum = 0
 	const word = 'hello'
-	const guess = 'world'
+	const [guessNum, setGuessNum] = useState(0)
+	const [guessOne, setGuessOne] = useState('')
+	const [guessTwo, setGuessTwo] = useState('')
+	const [text, setText] = useState('')
 
-	const guess1 = () => {
+	const handleGuessOnSubmit = () => {
+		switch (guessNum) {
+			case 0:
+				setGuessOne(text)
+				setGuessNum(1)
+				break
+			case 1:
+				setGuessTwo(text)
+				setGuessNum(2)
+				break
+		}
+	}
+
+	const response1 = () => {
 		return rowArr.map((e) => (
 			<Card
 				key={e}
@@ -28,9 +43,11 @@ const NewHomePage = () => {
 					margin: 10,
 					color: 'white',
 					backgroundColor:
-						word[e] === guess[e]
+						guessOne[e] === undefined
+							? 'lightgrey'
+							: word[e] === `${guessOne[e]}`
 							? 'green'
-							: word.includes(guess[e])
+							: word.includes(guessOne[e])
 							? 'yellow'
 							: 'black',
 				}}
@@ -39,19 +56,92 @@ const NewHomePage = () => {
 					variant='h5'
 					component='h2'
 				>
-					{guess[e]}
+					{guessOne[e]}
 				</Typography>
 			</Card>
 		))
 	}
 
+	const response2 = () => {
+		return rowArr.map((e) => (
+			<Card
+				key={e}
+				style={{
+					width: 50,
+					height: 50,
+					margin: 10,
+					color: 'white',
+					backgroundColor:
+						guessTwo[e] === undefined
+							? 'lightgrey'
+							: word[e] === `${guessTwo[e]}`
+							? 'green'
+							: word.includes(guessTwo[e])
+							? 'yellow'
+							: 'black',
+				}}
+			>
+				<Typography
+					variant='h5'
+					component='h2'
+				>
+					{guessTwo[e]}
+				</Typography>
+			</Card>
+		))
+	}
+
+	const TextBox = () => {
+		return (
+			<>
+				<CssBaseline />
+				<OutlinedInput
+					placeholder='Type a word here'
+					variant='outlined'
+					value={text}
+					onChange={(e) => setText(e.target.value)}
+				/>
+				<Button
+					variant='contained'
+					color='primary'
+					endIcon={<Icon>check</Icon>}
+					onClick={() => handleGuessOnSubmit()}
+				>
+					Check
+				</Button>
+			</>
+		)
+	}
+
 	return (
 		<>
+			<Container maxWidth='lg'>
+				<OutlinedInput
+					placeholder='Type a word here'
+					variant='outlined'
+					value={text}
+					onChange={(e) => setText(e.target.value)}
+				/>
+				<Button
+					variant='contained'
+					color='primary'
+					endIcon={<Icon>check</Icon>}
+					onClick={() => handleGuessOnSubmit()}
+				>
+					Check
+				</Button>
+			</Container>
 			<Grid
 				key={0}
 				container
 			>
-				{guess1()}
+				{response1()}
+			</Grid>
+			<Grid
+				key={1}
+				container
+			>
+				{response2()}
 			</Grid>
 		</>
 	)
