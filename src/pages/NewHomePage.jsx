@@ -14,6 +14,7 @@ import { useState } from 'react'
 
 const NewHomePage = () => {
 	const rowArr = [0, 1, 2, 3, 4]
+	const firstKeysRow = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P']
 	const word = 'hello'
 	const [guessNum, setGuessNum] = useState(0)
 	const [guessOne, setGuessOne] = useState('')
@@ -91,6 +92,28 @@ const NewHomePage = () => {
 		))
 	}
 
+	const firstKeyboardRow = () => {
+		return firstKeysRow.map((e) => (
+			<Card
+				key={e}
+				style={{
+					width: 50,
+					height: 50,
+					margin: 10,
+					color: 'white',
+					backgroundColor: 'darkgrey',
+				}}
+			>
+				<Typography
+					variant='h5'
+					component='h2'
+				>
+					{e}
+				</Typography>
+			</Card>
+		))
+	}
+
 	const TextBox = () => {
 		return (
 			<>
@@ -142,6 +165,12 @@ const NewHomePage = () => {
 				container
 			>
 				{response2()}
+			</Grid>
+			<Grid
+				key={6}
+				container
+			>
+				{firstKeyboardRow()}
 			</Grid>
 		</>
 	)
